@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Practica3</string>
+    <string name="stTextoSinContactos">No tienes contactos actualmente</string>
+    <string name="stTituloMiNombre">Joel Sempere Durá</string>
+</resources>
