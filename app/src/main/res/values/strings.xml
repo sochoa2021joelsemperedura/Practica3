@@ -4,4 +4,15 @@
     <string name="stTituloMiNombre">Joel Sempere Durá</string>
     <string name="stNuevo">Nuevo</string>
     <string name="stSalir">Salir</string>
+    <string name="stNuevoContacto">Nuevo Contacto</string>
+    <string name="stNombre">Nombre</string>
+    <string name="stApellidos">Apellidos</string>
+    <string name="stEmpresa">Empresa</string>
+    <string name="stTelefono">Teléfono</string>
+    <string name="stParticular">Particular</string>
+    <string name="stFavoritos">Favoritos</string>
+    <string name="stHombre">Hombre</string>
+    <string name="stMujer">Mujer</string>
+    <string name="stRecordarLlamar">Recordar Llamar</string>
+    <string name="stEdad">Edad:</string>
 </resources>
