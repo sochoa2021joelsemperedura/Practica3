@@ -15,4 +15,5 @@
     <string name="stMujer">Mujer</string>
     <string name="stRecordarLlamar">Recordar Llamar</string>
     <string name="stEdad">Edad:</string>
+    <string name="stIntroduceValor">Introduce un valor</string>
 </resources>
