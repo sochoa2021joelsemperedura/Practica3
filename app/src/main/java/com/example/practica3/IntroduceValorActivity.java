@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class IntroduceValorActivity extends AppCompatActivity {
+    //TODO SEGURAMENTE ESO TENGA QUE SER EXTRA DATO Y EXTRA RESULTADO, MIRAR EL GITHUB DEL MODULO
     //Los extras que identificaran los datos que recibira de IntroduceValorActivity
     public final static String EXTRA_NOMBRE_CONTACTO = "NuevoContactoActivity.NOMBRE";
     public final static String EXTRA_APELLIDO_CONTACTO = "NuevoContactoActivity.APELLIDOS";
