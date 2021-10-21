@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class NuevoContactoActivity extends AppCompatActivity {
+public class NuevoContactoActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     public final static int OPTION_REQUEST_NOMBRE = 0;
@@ -36,17 +33,11 @@ public class NuevoContactoActivity extends AppCompatActivity {
         //Inicio las views
         iniciaViews();
 
-        //el clic en cualquiera de las text view llama a la actividad introduceValorActivity y ademas se identifica a si misma para recibir una string de regreso si se da OK.
-        tvNombreContacto.setOnClickListener(e->{
-            iniciaActivityIntroducir(OPTION_REQUEST_NOMBRE,IntroduceValorActivity.EXTRA_NOMBRE_CONTACTO,tvNombreContacto.getText().toString());
+        //Manejaremos el evento del botón en el mismo Listener. Para ello fijaros como la activity implementa View.OnClickListener
+        tvNombreContacto.setOnClickListener(this);
+        tvApellidos.setOnClickListener(this);
+        tvEmpresa.setOnClickListener(this);
 
-        });
-        tvApellidos.setOnClickListener(e->{
-            iniciaActivityIntroducir(OPTION_REQUEST_APELLIDO,IntroduceValorActivity.EXTRA_APELLIDO_CONTACTO,tvApellidos.getText().toString());
-        });
-        tvEmpresa.setOnClickListener(e->{
-            iniciaActivityIntroducir(OPTION_REQUEST_EMPRESA,IntroduceValorActivity.EXTRA_EMPRESA_CONTACTO,tvEmpresa.getText().toString());
-        });
 
         skbEdad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -66,6 +57,71 @@ public class NuevoContactoActivity extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Maneja el click de los botones de la Activity
+     * @param view: Boton que recibe el click
+     */
+    @Override
+    public void onClick(View view) {
+        Intent i;
+        //creamos el intent para llamar a la acitividad
+        i=new Intent(this,IntroduceValorActivity.class);
+        switch (view.getId()) {
+            case R.id.tvNombreContacto:
+                //enviamos el nombre actual
+                i.putExtra(IntroduceValorActivity.EXTRA_DATOS,tvNombreContacto.getText().toString());
+                //llamamos a la actividad a la espera de recibir el resultado
+                //indicando el código de llamada
+                startActivityForResult(i,OPTION_REQUEST_NOMBRE);
+                break;
+            case R.id.tvApellidos:
+                //enviamos el apellido actual
+                i.putExtra(IntroduceValorActivity.EXTRA_DATOS,tvApellidos.getText().toString());
+                //llamamos a la actividad a la espera de recibir el resultado
+                //indicando el código de llamada
+                startActivityForResult(i,OPTION_REQUEST_APELLIDO);
+                break;
+            case R.id.tvEmpresa:
+                //enviamos la empresa actual
+                i.putExtra(IntroduceValorActivity.EXTRA_DATOS,tvEmpresa.getText().toString());
+                //llamamos a la actividad a la espera de recibir el resultado
+                //indicando el código de llamada
+                startActivityForResult(i,OPTION_REQUEST_EMPRESA);
+                break;
+        }
+    }
+
+    /**
+     * Cuando la actividad EntradaDatos termine, esta actividad llamará a este evento, donde
+     * podremos obtener el resultado devuelto.
+     * @param requestCode: si fue llamada para NOMBRE on APELLIDO
+     * @param resultCode: Si el usuario pulsó ACEPTAR o CANCELAR
+     * @param data: Datos devueltos
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Comprobamos si el resultado de la segunda actividad no es  "RESULT_CANCELED".
+        if (resultCode != RESULT_CANCELED) {
+            // De lo contrario, recogemos el resultado de la segunda actividad.
+            String resultado = data.getStringExtra(IntroduceValorActivity.EXTRA_DATOS_RESULTADO);
+            // Y tratamos el resultado en función de si se lanzó para rellenar el
+            // nombre o el apellido.
+            switch (requestCode) {
+                case OPTION_REQUEST_NOMBRE:
+                    tvNombreContacto.setText(resultado);
+                    break;
+                case OPTION_REQUEST_APELLIDO:
+                    tvApellidos.setText(resultado);
+                    break;
+                case OPTION_REQUEST_EMPRESA:
+                    tvEmpresa.setText(resultado);
+                    break;
+
+            }
+        }
+    }
+
     //Inicia las views
     private void iniciaViews(){
         tvNombreContacto = findViewById(R.id.tvNombreContacto);
@@ -74,10 +130,5 @@ public class NuevoContactoActivity extends AppCompatActivity {
         skbEdad = findViewById(R.id.skbEdad);
         tvEdadSkb = findViewById(R.id.tvEdadSkb);
     }
-    //Metodo que recibe un intent y identifica que textView hace la llamada y establece el texto recibido de la otra actividad
-    private void iniciaActivityIntroducir(int optionRequest,String extra,String texto){
-        Intent intent = new Intent(NuevoContactoActivity.this,IntroduceValorActivity.class);
-        startActivityForResult(intent,optionRequest);
-        intent.putExtra(extra,texto);
-    }
+
 }
