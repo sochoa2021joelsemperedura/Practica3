@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -24,6 +27,12 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     //El Seekbar, la textView representa a values de la barra (maximo establecido en modo diseño)
     SeekBar skbEdad;
     TextView tvEdadSkb;
+    //TODO haciendo los botones y sus funciones
+    Button btnOk;
+    Button btnCancel;
+    EditText etTelefono;
+    //String que recibe la actividad principal
+    String textoDelMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,20 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
+        });
+        //Boton que cierra la actividad
+        btnCancel.setOnClickListener(e->{
+            finish();
+        });
+        //btn que envia las strings de los datos del usuario y su numero de telefono
+        btnOk.setOnClickListener(e->{
+            //TODO solucionar error
+            Intent intent = new Intent();
+            //pongo la informacion que recibira la mainactivity en la string textodelmain
+            textoDelMain +=tvNombreContacto.getText().toString()+" "+tvApellidos.getText().toString()+":"+etTelefono.getText().toString()+"\n";
+            intent.putExtra(MainActivity.EXTRA_CONTACTOS_ACTUALES,textoDelMain);
+            setResult(RESULT_OK,intent);
+           finish();
         });
     }
     /**
@@ -129,6 +152,9 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         tvEmpresa = findViewById(R.id.tvEmpresa);
         skbEdad = findViewById(R.id.skbEdad);
         tvEdadSkb = findViewById(R.id.tvEdadSkb);
+        btnCancel = findViewById(R.id.btnCancel);
+        btnOk = findViewById(R.id.btnOk);
+        etTelefono= findViewById(R.id.etTelefono);
     }
 
 }
