@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     //Constante para identificar los valores Extra que se enviaran a la activity
-    public final static String EXTRA_CONTACTOS_ACTUALES = "MainActivity.CONTACTOS";
+
     public final int CONTACTO_NUEVO = 1;
     TextView tvContactosActuales;
     Button btnNuevo;
@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
-            tvContactosActuales.setText(data.getStringExtra(EXTRA_CONTACTOS_ACTUALES));
+            //Contactos actuales es igual a el texto de los contactos actuales más el string extra del intent que recupero.
+            tvContactosActuales.setText(tvContactosActuales.getText().toString()+data.getStringExtra(NuevoContactoActivity.EXTRA_CONTACTOS_ACTUALES)+"\n");
         }
     }
 }

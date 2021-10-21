@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class NuevoContactoActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    public final static String EXTRA_CONTACTOS_ACTUALES = "NuevoContactoActivity.CONTACTOS";
     public final static int OPTION_REQUEST_NOMBRE = 0;
     public final static int OPTION_REQUEST_APELLIDO = 1;
     public final static int OPTION_REQUEST_EMPRESA = 2;
@@ -32,7 +32,7 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     Button btnCancel;
     EditText etTelefono;
     //String que recibe la actividad principal
-    String textoDelMain;
+    String textoDelMain="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +71,11 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         });
         //btn que envia las strings de los datos del usuario y su numero de telefono
         btnOk.setOnClickListener(e->{
-            //TODO solucionar error
-            Intent intent = new Intent();
+            Intent iBack = getIntent();
             //pongo la informacion que recibira la mainactivity en la string textodelmain
-            textoDelMain +=tvNombreContacto.getText().toString()+" "+tvApellidos.getText().toString()+":"+etTelefono.getText().toString()+"\n";
-            intent.putExtra(MainActivity.EXTRA_CONTACTOS_ACTUALES,textoDelMain);
-            setResult(RESULT_OK,intent);
+            textoDelMain =tvNombreContacto.getText().toString()+" "+tvApellidos.getText().toString()+":"+etTelefono.getText().toString();
+            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES,textoDelMain);
+            setResult(RESULT_OK,iBack);
            finish();
         });
     }
