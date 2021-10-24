@@ -20,9 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnOk"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/btnOk" />
 
     <Button
         android:id="@+id/btnOk"
@@ -38,45 +36,38 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnCancel"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/ivRecordarLlamar"
         android:layout_width="42dp"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNuevoContacto"
-        app:srcCompat="@drawable/img_record_call" />
+        app:srcCompat="@drawable/img_record_call"
+        tools:layout_editor_absoluteY="51dp" />
 
     <ImageView
         android:id="@+id/ivEmpresaOParticular"
         android:layout_width="50dp"
         android:layout_height="54dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/ivRecordarLlamar"
-        app:layout_constraintTop_toBottomOf="@+id/tvNuevoContacto"
-        app:srcCompat="@drawable/img_user" />
+        app:srcCompat="@drawable/img_user"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="51dp" />
 
     <ImageView
         android:id="@+id/ivFavoritos"
         android:layout_width="41dp"
         android:layout_height="44dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNuevoContacto"
-        app:srcCompat="@drawable/img_star_empty" />
+        app:srcCompat="@drawable/img_star_empty"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="51dp" />
 
     <ImageView
         android:id="@+id/ivSexo"
         android:layout_width="43dp"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/ivFavoritos"
-        app:layout_constraintTop_toBottomOf="@+id/tvNuevoContacto"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="51dp"
         tools:srcCompat="@drawable/img_male" />
 
     <TextView
@@ -219,11 +210,9 @@
         android:layout_marginEnd="8dp"
         android:indeterminate="false"
         android:max="100"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEdadSkb"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEdadSkb" />
 
     <TextView
         android:id="@+id/tvEdadSkb"
@@ -236,10 +225,10 @@
         app:layout_constraintTop_toBottomOf="@+id/cbxRecordarLlamar" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

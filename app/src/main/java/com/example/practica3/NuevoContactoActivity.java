@@ -4,14 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class NuevoContactoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,7 +32,7 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     //El Seekbar, la textView representa a values de la barra (maximo establecido en modo diseño)
     SeekBar skbEdad;
     TextView tvEdadSkb;
-    //TODO haciendo los botones y sus funciones
+
     Button btnOk;
     Button btnCancel;
     EditText etTelefono;
@@ -38,10 +40,21 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     String textoDelMain="";
     //imagen que cambiara
     ImageView ivEmpresaOParticular;
+    ImageView ivSexo;
+    ImageView ivRecordarLlamar;
+    ImageView ivFavoritos;
     //radiogroup y elementos
     RadioGroup rgTipoContacto;
     RadioButton rbEmpresa;
     RadioButton rbParticular;
+    RadioGroup rgSexo;
+    RadioButton rbHombre;
+    RadioButton rbMujer;
+    //Checkbox
+    CheckBox cbxRecordarLlamar;
+    //Switch
+    Switch swFavoritos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +69,7 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         tvApellidos.setOnClickListener(this);
         tvEmpresa.setOnClickListener(this);
 
+        //cambio de imagen segun la seleccion del radiobutton, pd: el por defecto esta señalado en el xml de la actividad
         rgTipoContacto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -69,9 +83,54 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
                 }
             }
         });
+        //En este caso no hay seleccion por defecto ya que uno puede no querer identificar su genero.
+        rgSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbHombre:
+                        ivSexo.setImageResource(R.drawable.img_male);
+                        break;
+                    case R.id.rbMujer:
+                        ivSexo.setImageResource(R.drawable.img_female);
+                        break;
+                }
+            }
+        });
 
+        //Detecta si el checkbox esta marcado, en caso de estarlo da visibilidad a una imageview
+        cbxRecordarLlamar.setOnCheckedChangeListener(
+                new CheckBox.OnCheckedChangeListener(){
 
-                skbEdad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked) {
+                            ivRecordarLlamar.setVisibility(View.VISIBLE);
+                        }else{
+                            //No me gusta el gone, prefiero que siga manteniendo su espacio aun sin visibilidad
+                            ivRecordarLlamar.setVisibility(View.INVISIBLE);
+                            }
+                    }
+                }
+        );
+        /*En el ejercicio te pide el uso del visibility , pero ya lo he utilizado y me parece más correcto sustituir la imagen
+            Sustituye la imagen comprobando si esta marcado o lo el switch
+         */
+        swFavoritos.setOnCheckedChangeListener(
+                new CheckBox.OnCheckedChangeListener(){
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked) {
+                            ivFavoritos.setImageResource(R.drawable.img_star);
+                        }else{
+                            ivFavoritos.setImageResource(R.drawable.img_star_empty);
+                        }
+                    }
+                }
+        );
+
+        skbEdad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 //añade en la textView de la edad el valor del seekbar segun desplazas la barra
@@ -88,6 +147,7 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
 
             }
         });
+
         //Boton que cierra la actividad
         btnCancel.setOnClickListener(e -> {
             finish();
@@ -182,6 +242,14 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         rgTipoContacto = findViewById(R.id.rgTipoContacto);
         rbEmpresa = findViewById(R.id.rbEmpresa);
         rbParticular = findViewById(R.id.rbParticular);
+        ivSexo = findViewById(R.id.ivSexo);
+        rgSexo = findViewById(R.id.rgSexo);
+        rbHombre = findViewById(R.id.rbHombre);
+        rbMujer = findViewById(R.id.rbMujer);
+        cbxRecordarLlamar = findViewById(R.id.cbxRecordarLlamar);
+        ivRecordarLlamar = findViewById(R.id.ivRecordarLlamar);
+        swFavoritos = findViewById(R.id.swFavoritos);
+        ivFavoritos = findViewById(R.id.ivFavoritos);
     }
 
 }
