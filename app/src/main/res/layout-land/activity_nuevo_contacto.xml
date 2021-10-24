@@ -9,72 +9,72 @@
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
         android:backgroundTint="#B8B8B8"
         android:text="@android:string/cancel"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnOk"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnOk" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <Button
         android:id="@+id/btnOk"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
         android:backgroundTint="#B8B8B8"
         android:text="@android:string/ok"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/btnCancel" />
 
     <ImageView
         android:id="@+id/ivRecordarLlamar"
         android:layout_width="42dp"
         android:layout_height="56dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/img_record_call"
-        tools:layout_editor_absoluteY="51dp" />
+        app:layout_constraintEnd_toStartOf="@+id/ivEmpresaOParticular"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_record_call" />
 
     <ImageView
         android:id="@+id/ivEmpresaOParticular"
         android:layout_width="50dp"
         android:layout_height="54dp"
-        app:srcCompat="@drawable/img_user"
-        tools:layout_editor_absoluteX="102dp"
-        tools:layout_editor_absoluteY="51dp" />
+        app:layout_constraintEnd_toStartOf="@+id/ivSexo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivRecordarLlamar"
+        app:layout_constraintTop_toTopOf="@+id/ivRecordarLlamar"
+        app:srcCompat="@drawable/img_user" />
 
     <ImageView
         android:id="@+id/ivFavoritos"
-        android:layout_width="41dp"
-        android:layout_height="44dp"
-        app:srcCompat="@drawable/img_star_empty"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="51dp" />
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        app:layout_constraintStart_toEndOf="@+id/ivSexo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_star_empty" />
 
     <ImageView
         android:id="@+id/ivSexo"
-        android:layout_width="43dp"
-        android:layout_height="45dp"
-        tools:layout_editor_absoluteX="201dp"
-        tools:layout_editor_absoluteY="51dp"
+        android:layout_width="51dp"
+        android:layout_height="52dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivFavoritos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivEmpresaOParticular"
+        app:layout_constraintTop_toTopOf="@+id/ivEmpresaOParticular"
         tools:srcCompat="@drawable/img_male" />
 
     <TextView
         android:id="@+id/tvNuevoContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/stNuevoContacto"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -86,12 +86,12 @@
         android:id="@+id/tvNombreContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:clickable="true"
         android:text="@string/stNombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivRecordarLlamar" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNuevoContacto" />
 
     <TextView
         android:id="@+id/tvApellidos"
@@ -119,23 +119,21 @@
         android:id="@+id/etTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/stTelefono"
         android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEmpresa" />
 
     <RadioGroup
         android:id="@+id/rgTipoContacto"
-        android:layout_width="330dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="272dp"
+        android:layout_height="51dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTelefono">
+        app:layout_constraintStart_toEndOf="@+id/etTelefono"
+        app:layout_constraintTop_toTopOf="@+id/etTelefono">
 
         <RadioButton
             android:id="@+id/rbEmpresa"
@@ -147,10 +145,10 @@
 
         <RadioButton
             android:id="@+id/rbParticular"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:checked="true"
             android:text="@string/stParticular" />
     </RadioGroup>
 
@@ -172,7 +170,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/rgTipoContacto"
         app:layout_constraintStart_toEndOf="@+id/swFavoritos"
         app:layout_constraintTop_toBottomOf="@+id/rgTipoContacto">
 
@@ -205,24 +202,20 @@
         android:id="@+id/skbEdad"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:indeterminate="false"
         android:max="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnOk"
+        app:layout_constraintStart_toEndOf="@+id/cbxRecordarLlamar"
         app:layout_constraintTop_toBottomOf="@+id/tvEdadSkb" />
 
     <TextView
         android:id="@+id/tvEdadSkb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/stEdad"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbxRecordarLlamar" />
+        app:layout_constraintStart_toEndOf="@+id/cbxRecordarLlamar"
+        app:layout_constraintTop_toTopOf="@+id/cbxRecordarLlamar" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -230,5 +223,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
