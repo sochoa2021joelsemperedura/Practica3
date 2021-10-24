@@ -8,6 +8,9 @@ import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -33,6 +36,12 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     EditText etTelefono;
     //String que recibe la actividad principal
     String textoDelMain="";
+    //imagen que cambiara
+    ImageView ivEmpresaOParticular;
+    //radiogroup y elementos
+    RadioGroup rgTipoContacto;
+    RadioButton rbEmpresa;
+    RadioButton rbParticular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +56,26 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         tvApellidos.setOnClickListener(this);
         tvEmpresa.setOnClickListener(this);
 
+        rgTipoContacto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbEmpresa:
+                        ivEmpresaOParticular.setImageResource(R.drawable.img_company);
+                        break;
+                    case R.id.rbParticular:
+                        ivEmpresaOParticular.setImageResource(R.drawable.img_user);
+                        break;
+                }
+            }
+        });
 
-        skbEdad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+                skbEdad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 //añade en la textView de la edad el valor del seekbar segun desplazas la barra
-                tvEdadSkb.setText(getString(R.string.stEdad)+" "+i);
+                tvEdadSkb.setText(getString(R.string.stEdad) + " " + i);
             }
 
             @Override
@@ -66,18 +89,19 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
             }
         });
         //Boton que cierra la actividad
-        btnCancel.setOnClickListener(e->{
+        btnCancel.setOnClickListener(e -> {
             finish();
         });
         //btn que envia las strings de los datos del usuario y su numero de telefono
-        btnOk.setOnClickListener(e->{
+        btnOk.setOnClickListener(e -> {
             Intent iBack = getIntent();
             //pongo la informacion que recibira la mainactivity en la string textodelmain
-            textoDelMain =tvNombreContacto.getText().toString()+" "+tvApellidos.getText().toString()+":"+etTelefono.getText().toString();
-            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES,textoDelMain);
-            setResult(RESULT_OK,iBack);
-           finish();
+            textoDelMain = tvNombreContacto.getText().toString() + " " + tvApellidos.getText().toString() + ":" + etTelefono.getText().toString();
+            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES, textoDelMain);
+            setResult(RESULT_OK, iBack);
+            finish();
         });
+
     }
     /**
      * Maneja el click de los botones de la Activity
@@ -154,6 +178,10 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         btnCancel = findViewById(R.id.btnCancel);
         btnOk = findViewById(R.id.btnOk);
         etTelefono= findViewById(R.id.etTelefono);
+        ivEmpresaOParticular = findViewById(R.id.ivEmpresaOParticular);
+        rgTipoContacto = findViewById(R.id.rgTipoContacto);
+        rbEmpresa = findViewById(R.id.rbEmpresa);
+        rbParticular = findViewById(R.id.rbParticular);
     }
 
 }
