@@ -54,6 +54,8 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     CheckBox cbxRecordarLlamar;
     //Switch
     Switch swFavoritos;
+    //ImageView de la opcional 1
+    ImageView ivEdadPersona;
 
 
     @Override
