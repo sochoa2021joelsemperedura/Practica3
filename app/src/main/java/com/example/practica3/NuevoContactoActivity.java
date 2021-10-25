@@ -19,6 +19,7 @@ import android.widget.TextView;
 public class NuevoContactoActivity extends AppCompatActivity implements View.OnClickListener {
 
     public final static String EXTRA_CONTACTOS_ACTUALES = "NuevoContactoActivity.CONTACTOS";
+    public static String SEXO = "NuevoContactoActivity.SEXO";
     public final static int OPTION_REQUEST_NOMBRE = 0;
     public final static int OPTION_REQUEST_APELLIDO = 1;
     public final static int OPTION_REQUEST_EMPRESA = 2;
@@ -92,9 +93,11 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
                 switch (checkedId){
                     case R.id.rbHombre:
                         ivSexo.setImageResource(R.drawable.img_male);
+                        SEXO="hombre";
                         break;
                     case R.id.rbMujer:
                         ivSexo.setImageResource(R.drawable.img_female);
+                        SEXO="mujer";
                         break;
                 }
             }
@@ -137,6 +140,18 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 //añade en la textView de la edad el valor del seekbar segun desplazas la barra
                 tvEdadSkb.setText(getString(R.string.stEdad) + " " + i);
+                /*
+                Sustituye la imagen segun la condicion, si no hay sexo selecionado entonces no aparece ninguna representacion grafica
+                 */
+                if (SEXO == "hombre"){
+                    cambiaImagen(i,R.drawable.img_bebe_ninyo,R.drawable.img_chico_joven,R.drawable.img_chico_adolescente,R.drawable.img_chico_adulto,R.drawable.img_senyor_mayor);
+
+                }else if (SEXO == "mujer"){
+                    cambiaImagen(i,R.drawable.img_bebe_ninya,R.drawable.img_chica_joven,R.drawable.img_chica_adolescente,R.drawable.img_chica_adulta,R.drawable.img_mujer_mayor);
+                }else{
+                    ivEdadPersona.setVisibility(View.INVISIBLE);
+                }
+
             }
 
             @Override
@@ -165,6 +180,21 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         });
 
     }
+    //establece las imagenes segun el rango de edad del seek que recibe su edad a traves de i, y las imagenes con el resto de int que identifican a la imagen
+    private void cambiaImagen(int i, int imgUno, int imgDos, int imgTres, int imgCuatro, int imgCinco){
+        if (i < 6){
+            ivEdadPersona.setImageResource(imgUno);
+        }else if (i > 6 && i <=12){
+            ivEdadPersona.setImageResource(imgDos);
+        }else if (i >12 && i <=18){
+            ivEdadPersona.setImageResource(imgTres);
+        }else if (i >18 && i <=55){
+            ivEdadPersona.setImageResource(imgCuatro);
+        }else{
+            ivEdadPersona.setImageResource(imgCinco);
+        }
+    }
+
     /**
      * Maneja el click de los botones de la Activity
      * @param view: Boton que recibe el click
@@ -252,6 +282,8 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         ivRecordarLlamar = findViewById(R.id.ivRecordarLlamar);
         swFavoritos = findViewById(R.id.swFavoritos);
         ivFavoritos = findViewById(R.id.ivFavoritos);
+        //parte opcional 1, buscado el objeto para inflarlo
+        ivEdadPersona = findViewById(R.id.ivEdadPersona);
     }
 
 }
