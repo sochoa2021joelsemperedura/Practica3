@@ -137,7 +137,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvEmpresa" />
 
     <RadioGroup
-        android:id="@+id/rgTipoContacto"
+        android:id="@+id/rgOrdenar"
         android:layout_width="330dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -147,7 +147,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etTelefono">
 
         <RadioButton
-            android:id="@+id/rbEmpresa"
+            android:id="@+id/rbNombreOrd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -155,7 +155,7 @@
             android:textSize="14sp" />
 
         <RadioButton
-            android:id="@+id/rbParticular"
+            android:id="@+id/rbApellidoOrd"
             android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
         android:text="@string/stFavoritos"
         app:layout_constraintBottom_toBottomOf="@+id/rgSexo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rgTipoContacto" />
+        app:layout_constraintTop_toBottomOf="@+id/rgOrdenar" />
 
     <RadioGroup
         android:id="@+id/rgSexo"
@@ -181,9 +181,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/rgTipoContacto"
+        app:layout_constraintEnd_toEndOf="@+id/rgOrdenar"
         app:layout_constraintStart_toEndOf="@+id/swFavoritos"
-        app:layout_constraintTop_toBottomOf="@+id/rgTipoContacto">
+        app:layout_constraintTop_toBottomOf="@+id/rgOrdenar">
 
         <RadioButton
             android:id="@+id/rbHombre"

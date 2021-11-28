@@ -74,10 +74,10 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
-                    case R.id.rbEmpresa:
+                    case R.id.rbNombreOrd:
                         ivEmpresaOParticular.setImageResource(R.drawable.img_company);
                         break;
-                    case R.id.rbParticular:
+                    case R.id.rbApellidoOrd:
                         ivEmpresaOParticular.setImageResource(R.drawable.img_user);
                         break;
                 }
@@ -239,9 +239,9 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         btnOk = findViewById(R.id.btnOk);
         etTelefono= findViewById(R.id.etTelefono);
         ivEmpresaOParticular = findViewById(R.id.ivEmpresaOParticular);
-        rgTipoContacto = findViewById(R.id.rgTipoContacto);
-        rbEmpresa = findViewById(R.id.rbEmpresa);
-        rbParticular = findViewById(R.id.rbParticular);
+        rgTipoContacto = findViewById(R.id.rgOrdenar);
+        rbEmpresa = findViewById(R.id.rbNombreOrd);
+        rbParticular = findViewById(R.id.rbApellidoOrd);
         ivSexo = findViewById(R.id.ivSexo);
         rgSexo = findViewById(R.id.rgSexo);
         rbHombre = findViewById(R.id.rbHombre);
