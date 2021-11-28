@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class IntroduceValorActivity extends AppCompatActivity implements View.OnClickListener{
-    //TODO SEGURAMENTE ESO TENGA QUE SER EXTRA DATO Y EXTRA RESULTADO, MIRAR EL GITHUB DEL MODULO
     //Los extras que identificaran los datos que recibira de IntroduceValorActivity
     public final static String EXTRA_DATOS_RESULTADO = "NuevoContactoActivity.DATOSRESULTADO";
     public final static String EXTRA_DATOS = "NuevoContactoActivity.DATOS";
