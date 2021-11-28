@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.practica3.POJO.Contacto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
     //Constante para identificar los valores Extra que se enviaran a la activity
 
@@ -16,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     TextView tvContactosActuales;
     Button btnNuevo;
     Button btnSalir;
+
+    //opcional 3
+    Set<Contacto> contactosSinDuplicar;
+    List<Contacto> contactoList;
 
 
 
@@ -54,8 +64,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
-            //Contactos actuales es igual a el texto de los contactos actuales más el string extra del intent que recupero.
-            tvContactosActuales.setText(tvContactosActuales.getText().toString()+data.getStringExtra(NuevoContactoActivity.EXTRA_CONTACTOS_ACTUALES)+"\n");
+            contactosSinDuplicar.add(data.getParcelableExtra((NuevoContactoActivity.EXTRA_CONTACTOS_ACTUALES))); //obtenemos el nuevo objeto
+            tvContactosActuales.setText(devuelveUnaLista(contactosSinDuplicar));
         }
+    }
+
+    private String devuelveUnaLista(Set<Contacto> contactos) {
+        String salida="";
+        //todo ordenada por apellidos
+        contactoList = new ArrayList<>(contactos);
+        for (Contacto contacto: contactoList) {
+            salida+=contacto.toString()+"\n";
+        }
+        return salida;
+
     }
 }

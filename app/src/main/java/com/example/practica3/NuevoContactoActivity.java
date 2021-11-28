@@ -16,6 +16,8 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.practica3.POJO.Contacto;
+
 public class NuevoContactoActivity extends AppCompatActivity implements View.OnClickListener {
 
     public final static String EXTRA_CONTACTOS_ACTUALES = "NuevoContactoActivity.CONTACTOS";
@@ -36,8 +38,10 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
     Button btnOk;
     Button btnCancel;
     EditText etTelefono;
-    //String que recibe la actividad principal
-    String textoDelMain="";
+
+    //Contacto que recibe la actividad principal
+    Contacto nuevoContacto;
+
     //imagen que cambiara
     ImageView ivEmpresaOParticular;
     ImageView ivSexo;
@@ -156,8 +160,9 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         btnOk.setOnClickListener(e -> {
             Intent iBack = getIntent();
             //pongo la informacion que recibira la mainactivity en la string textodelmain
-            textoDelMain = tvNombreContacto.getText().toString() + " " + tvApellidos.getText().toString() + ":" + etTelefono.getText().toString();
-            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES, textoDelMain);
+            nuevoContacto = new Contacto(tvNombreContacto.getText().toString(),tvApellidos.getText().toString(),
+                    Integer.parseInt(etTelefono.getText().toString() ));
+            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES, nuevoContacto);
             setResult(RESULT_OK, iBack);
             finish();
         });
