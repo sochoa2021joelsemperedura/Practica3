@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbEdadOrd;
     RadioButton rbTelefonoOrd;
 
-    Comparar metodoOrdenacion;
+    Comparar metodoOrdenacion = Comparar.NOMBRE;
 
 
 
