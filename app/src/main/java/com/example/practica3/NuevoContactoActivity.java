@@ -161,7 +161,7 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         //btn que envia las strings de los datos del usuario y su numero de telefono
         btnOk.setOnClickListener(e -> {
             //si no se rellenan esos dos datos no se escriben en la lista y lanza un toast de aviso
-            if (tvNombreContacto.getText() == null  && etTelefono == null) {
+            if (tvNombreContacto.getText() != null  && etTelefono != null) {
             Intent iBack = getIntent();
             //pongo la informacion que recibira la mainactivity en la string textodelmain
                 nuevoContacto = new Contacto(tvNombreContacto.getText().toString(), tvApellidos.getText().toString(),
