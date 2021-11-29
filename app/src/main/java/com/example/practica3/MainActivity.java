@@ -12,8 +12,12 @@ import android.widget.TextView;
 import com.example.practica3.POJO.Contacto;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity {
     //Constante para identificar los valores Extra que se enviaran a la activity
@@ -24,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnSalir;
 
     //opcional 3
-    Set<Contacto> contactosSinDuplicar;
+    Contacto contacto;
+    Set<Contacto> contactosSinDuplicar = new TreeSet<Contacto>(Comparator.comparing(Contacto::toString)); //se entiende como duplicado un objeto exactamente igual
     List<Contacto> contactoList;
 
 
@@ -63,16 +68,33 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            contactosSinDuplicar.add(data.getParcelableExtra((NuevoContactoActivity.EXTRA_CONTACTOS_ACTUALES))); //obtenemos el nuevo objeto
-            tvContactosActuales.setText(devuelveUnaLista(contactosSinDuplicar));
+        if (requestCode == 1 && data != null){
+
+            if (resultCode != RESULT_CANCELED){
+
+                Contacto contactoNuevo = data.getParcelableExtra((NuevoContactoActivity.EXTRA_CONTACTOS_ACTUALES));
+               //añado objeto al set
+                contactosSinDuplicar.add(contactoNuevo);
+                //recibe una string de la lista ya ordenada por apellidos
+                tvContactosActuales.setText(devuelveUnaLista(contactosSinDuplicar));
+            }
         }
     }
-
+    //Lista a partir del set que mantiene los contactos
     private String devuelveUnaLista(Set<Contacto> contactos) {
         String salida="";
-        //todo ordenada por apellidos
-        contactoList = new ArrayList<>(contactos);
+        //lista sin duplicidades
+        contactoList = new ArrayList<>(contactos); //se recrea una nueva lista para evitar duplicados cada vez que se añade contacto
+
+        //Orden por apellidos
+        Collections.sort(contactoList, new Comparator<Contacto>() {
+            @Override
+            public int compare(Contacto o1, Contacto o2) {
+                return o1.getApellidos().toLowerCase(Locale.ROOT).compareTo(o2.getApellidos().toLowerCase(Locale.ROOT));
+            }
+        });
+
+        //pero los contactos estan 'permanentes' en el set
         for (Contacto contacto: contactoList) {
             salida+=contacto.toString()+"\n";
         }

@@ -7,9 +7,9 @@ public class Contacto implements Parcelable {
     //*Solo voy a poner los atributos que se reflejen en el Text View
     private String nombre;
     private String apellidos;
-    private int telefono;
+    private String telefono; //como string me evita problemas , si en algun momento los necesito numericos le hago un parseint
 
-    public Contacto(String nombre, String apellidos, int telefono) {
+    public Contacto(String nombre, String apellidos, String telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
@@ -26,10 +26,10 @@ public class Contacto implements Parcelable {
     public String getApellidos() {
         return apellidos;
     }
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -47,19 +47,19 @@ public class Contacto implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nombre);
         dest.writeString(this.apellidos);
-        dest.writeInt(this.telefono);
+        dest.writeString(this.telefono);
     }
 
     public void readFromParcel(Parcel source) {
         this.nombre = source.readString();
         this.apellidos = source.readString();
-        this.telefono = source.readInt();
+        this.telefono = source.readString();
     }
 
     protected Contacto(Parcel in) {
         this.nombre = in.readString();
         this.apellidos = in.readString();
-        this.telefono = in.readInt();
+        this.telefono = in.readString();
     }
 
     public static final Creator<Contacto> CREATOR = new Creator<Contacto>() {

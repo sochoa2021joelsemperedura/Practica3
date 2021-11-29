@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -159,10 +160,12 @@ public class NuevoContactoActivity extends AppCompatActivity implements View.OnC
         //btn que envia las strings de los datos del usuario y su numero de telefono
         btnOk.setOnClickListener(e -> {
             Intent iBack = getIntent();
+
+
             //pongo la informacion que recibira la mainactivity en la string textodelmain
             nuevoContacto = new Contacto(tvNombreContacto.getText().toString(),tvApellidos.getText().toString(),
-                    Integer.parseInt(etTelefono.getText().toString() ));
-            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES, nuevoContacto);
+                    etTelefono.getText().toString());
+            iBack.putExtra(EXTRA_CONTACTOS_ACTUALES,nuevoContacto);
             setResult(RESULT_OK, iBack);
             finish();
         });
