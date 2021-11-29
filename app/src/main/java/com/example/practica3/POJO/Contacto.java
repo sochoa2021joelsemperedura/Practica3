@@ -7,9 +7,17 @@ public class Contacto implements Parcelable {
     //*Solo voy a poner los atributos que se reflejen en el Text View
     private String nombre;
     private String apellidos;
-    private String telefono; //como string me evita problemas , si en algun momento los necesito numericos le hago un parseint
+    private int telefono;
+    private int edad;
 
-    public Contacto(String nombre, String apellidos, String telefono) {
+    public Contacto(String nombre, String apellidos, int telefono, int edad) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.edad = edad;
+    }
+
+    public Contacto(String nombre, String apellidos, int telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
@@ -18,6 +26,8 @@ public class Contacto implements Parcelable {
     public Contacto(String nombre, String apellidos) {
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.telefono = 0;
+        this.edad = 0;
     }
 
     public String getNombre() {
@@ -26,10 +36,10 @@ public class Contacto implements Parcelable {
     public String getApellidos() {
         return apellidos;
     }
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -43,23 +53,30 @@ public class Contacto implements Parcelable {
         return 0;
     }
 
+    public int getEdad() {
+        return edad;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nombre);
         dest.writeString(this.apellidos);
-        dest.writeString(this.telefono);
+        dest.writeInt(this.telefono);
+        dest.writeInt(this.edad);
     }
 
     public void readFromParcel(Parcel source) {
         this.nombre = source.readString();
         this.apellidos = source.readString();
-        this.telefono = source.readString();
+        this.telefono = source.readInt();
+        this.edad = source.readInt();
     }
 
     protected Contacto(Parcel in) {
         this.nombre = in.readString();
         this.apellidos = in.readString();
-        this.telefono = in.readString();
+        this.telefono = in.readInt();
+        this.edad = in.readInt();
     }
 
     public static final Creator<Contacto> CREATOR = new Creator<Contacto>() {

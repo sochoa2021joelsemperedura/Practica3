@@ -16,4 +16,5 @@
     <string name="stRecordarLlamar">Recordar Llamar</string>
     <string name="stEdad">Edad:</string>
     <string name="stIntroduceValor">Introduce un valor</string>
+    <string name="stAvisoDatos">Hay campos sin rellenar</string>
 </resources>

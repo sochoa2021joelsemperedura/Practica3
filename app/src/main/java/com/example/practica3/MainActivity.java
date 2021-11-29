@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.practica3.POJO.Contacto;
@@ -32,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
     Set<Contacto> contactosSinDuplicar = new TreeSet<Contacto>(Comparator.comparing(Contacto::toString)); //se entiende como duplicado un objeto exactamente igual
     List<Contacto> contactoList;
 
+    //Opcional 4
+    RadioGroup rgOrdenar;
+    RadioButton rbNombreOrd;
+    RadioButton rbApellidosOrd;
+    RadioButton rbEdadOrd;
+    RadioButton rbTelefonoOrd;
+
 
 
     @Override
@@ -53,7 +62,24 @@ public class MainActivity extends AppCompatActivity {
            finish();
        });
 
+        //Lo que hace el cada radioButton cuando se le clica
+        rgOrdenar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbNombreOrd:
 
+                        break;
+                    case R.id.rbApellidosOrd:
+
+                        break;
+                    case R.id.rbEdadOrd:
+                        break;
+                    case R.id.rbTelefonoOrd:
+                        break;
+                }
+            }
+        });
 
     }
 
@@ -62,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
         tvContactosActuales = findViewById(R.id.tvContactosActuales);
         btnNuevo = findViewById(R.id.btnNuevo);
         btnSalir = findViewById(R.id.btnSalir);
+        //Opcional 4
+        rgOrdenar = findViewById(R.id.rgOrdenarLista);
+        rbApellidosOrd = findViewById(R.id.rbApellidosOrd);
+        rbNombreOrd = findViewById(R.id.rbNombreOrd);
+        rbEdadOrd = findViewById(R.id.rbEdadOrd);
+        rbTelefonoOrd = findViewById(R.id.rbTelefonoOrd);
 
     }
 
@@ -86,10 +118,11 @@ public class MainActivity extends AppCompatActivity {
         //lista sin duplicidades
         contactoList = new ArrayList<>(contactos); //se recrea una nueva lista para evitar duplicados cada vez que se añade contacto
 
-        //Orden por apellidos
+        //Orden
         Collections.sort(contactoList, new Comparator<Contacto>() {
             @Override
             public int compare(Contacto o1, Contacto o2) {
+
                 return o1.getApellidos().toLowerCase(Locale.ROOT).compareTo(o2.getApellidos().toLowerCase(Locale.ROOT));
             }
         });
@@ -101,4 +134,5 @@ public class MainActivity extends AppCompatActivity {
         return salida;
 
     }
+
 }
