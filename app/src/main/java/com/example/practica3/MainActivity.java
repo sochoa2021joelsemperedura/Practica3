@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.practica3.POJO.Comparar;
 import com.example.practica3.POJO.Contacto;
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbEdadOrd;
     RadioButton rbTelefonoOrd;
 
+    Comparar metodoOrdenacion;
+
 
 
     @Override
@@ -68,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.rbNombreOrd:
-
+                        metodoOrdenacion = Comparar.NOMBRE;
                         break;
                     case R.id.rbApellidosOrd:
+                       //todo metodoOrdenacion = Comparar.APELLIDO;
 
                         break;
                     case R.id.rbEdadOrd:
@@ -119,13 +123,7 @@ public class MainActivity extends AppCompatActivity {
         contactoList = new ArrayList<>(contactos); //se recrea una nueva lista para evitar duplicados cada vez que se añade contacto
 
         //Orden
-        Collections.sort(contactoList, new Comparator<Contacto>() {
-            @Override
-            public int compare(Contacto o1, Contacto o2) {
-
-                return o1.getApellidos().toLowerCase(Locale.ROOT).compareTo(o2.getApellidos().toLowerCase(Locale.ROOT));
-            }
-        });
+        contactoList.sort(metodoOrdenacion.getComparator());
 
         //pero los contactos estan 'permanentes' en el set
         for (Contacto contacto: contactoList) {

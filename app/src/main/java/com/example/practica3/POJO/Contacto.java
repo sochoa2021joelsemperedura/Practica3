@@ -10,6 +10,7 @@ public class Contacto implements Parcelable {
     private int telefono;
     private int edad;
 
+
     public Contacto(String nombre, String apellidos, int telefono, int edad) {
         this.nombre = nombre;
         this.apellidos = apellidos;
