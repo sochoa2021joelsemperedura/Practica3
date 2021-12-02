@@ -14,6 +14,15 @@ public enum Comparar{
             return contacto.getNombre().toLowerCase(Locale.ROOT).compareTo(contacto2.getNombre().toLowerCase(Locale.ROOT));
 
         }
+    }),
+    APELLIDO(new Comparator() {
+        @Override
+        public int compare(Object o, Object t1) {
+            Contacto contacto = (Contacto) o;
+            Contacto contacto2 = (Contacto) t1;
+
+            return contacto.getApellidos().toLowerCase(Locale.ROOT).compareTo(contacto2.getApellidos().toLowerCase(Locale.ROOT));
+        }
     });
 
     Comparator comparator;
