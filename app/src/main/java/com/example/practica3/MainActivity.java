@@ -72,17 +72,19 @@ public class MainActivity extends AppCompatActivity {
                 switch (checkedId){
                     case R.id.rbNombreOrd:
                         metodoOrdenacion = Comparar.NOMBRE;
-                        tvContactosActuales.setText(devuelveUnaLista(contactosSinDuplicar));
                         break;
                     case R.id.rbApellidosOrd:
-                       metodoOrdenacion = Comparar.APELLIDO; // cambia el comparador
-                        tvContactosActuales.setText(devuelveUnaLista(contactosSinDuplicar)); //actualiza la lista
+                       metodoOrdenacion = Comparar.APELLIDO;
                         break;
                     case R.id.rbEdadOrd:
+                        metodoOrdenacion = Comparar.EDAD;
+
                         break;
                     case R.id.rbTelefonoOrd:
+                        metodoOrdenacion = Comparar.TELEFONO; // cambia el comparador
                         break;
                 }
+                tvContactosActuales.setText(devuelveUnaLista(contactosSinDuplicar)); //actualiza la lista
             }
         });
 

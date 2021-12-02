@@ -23,6 +23,23 @@ public enum Comparar{
 
             return contacto.getApellidos().toLowerCase(Locale.ROOT).compareTo(contacto2.getApellidos().toLowerCase(Locale.ROOT));
         }
+    }),
+    EDAD(new Comparator() {
+        @Override
+        public int compare(Object o, Object t1) {
+            Contacto contacto = (Contacto) o;
+            Contacto contacto2 = (Contacto) t1;
+
+            return (contacto.getEdad() - contacto2.getEdad());
+        }
+    }),
+    TELEFONO(new Comparator() {
+        @Override
+        public int compare(Object o, Object t1) {
+            Contacto contacto = (Contacto) o;
+            Contacto contacto2 = (Contacto) t1;
+            return String.valueOf(contacto.getTelefono()).compareTo(String.valueOf(contacto2.getTelefono()));
+        }
     });
 
     Comparator comparator;
